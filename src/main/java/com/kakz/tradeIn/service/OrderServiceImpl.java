@@ -7,7 +7,6 @@ import com.kakz.tradeIn.repository.OrderItemRepository;
 import com.kakz.tradeIn.repository.OrderRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.stereotype.Service;
 
 
@@ -34,7 +33,7 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public Order createOrder(User user, OrderItem orderItem, OrderType orderType) {
 
-        double price = orderItem.getCoin().getCurrentPrice();
+        double price = orderItem.getCoin().getCurrentPrice()*orderItem.getQuantity();
 
         Order order = new Order();
         order.setOrderType(orderType);
@@ -58,7 +57,7 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public List<Order> getAllOrdersofUser(Long userId, OrderType orderType, String assetSymbol) {
 
-        return orderRepository.finByUserId(userId);
+        return orderRepository.findByUserId(userId);
     }
 
     public OrderItem createOrderItem(Coin coin,double quantity,
@@ -73,7 +72,7 @@ public class OrderServiceImpl implements OrderService{
 
     @Transactional
     public Order buyAsset(Coin coin, double quantity,User user) throws Exception {
-        if(quantity<= 0){
+        if(quantity< 0){
             throw new Exception("Quantity must be more than zero");
         }
         double price = coin.getCurrentPrice();
@@ -89,7 +88,9 @@ public class OrderServiceImpl implements OrderService{
         Asset oldAsset = assetService.findAssetByUserIdAndCoinId(order.getUser().getId(),
                 order.getOrderItem().getCoin().getId());
         if(oldAsset == null){
-            assetService.createAsset(user, orderItem.getCoin(),orderItem.getQuantity());
+            assetService.createAsset(user,
+                    orderItem.getCoin(),
+                    orderItem.getQuantity());
         }
         else{
             assetService.updateAsset(oldAsset.getId(),quantity);
@@ -147,11 +148,13 @@ public class OrderServiceImpl implements OrderService{
     public Order processOrder(Coin coin, double quantity,
                               OrderType orderType, User user) throws Exception {
         if(orderType == OrderType.BUY){
-            buyAsset(coin, quantity,user);
+            return buyAsset(coin, quantity,user);
         }
         else if(orderType == OrderType.SELL){
-            sellAsset(coin, quantity,user);
+            return sellAsset(coin, quantity,user);
         }
-        throw  new Exception("Invalid Order Type");
+        else{
+            throw  new Exception("Invalid Order Type");
+        }
     }
 }

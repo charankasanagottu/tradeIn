@@ -113,7 +113,6 @@ public class CoinServiceImpl implements CoinService {
             coin.setTotalSupply(marketData.get("total_supply").asLong());
 
             coinRepository.save(coin);
-
             return response.getBody();
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {

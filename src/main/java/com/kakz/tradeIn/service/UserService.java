@@ -15,5 +15,4 @@ public interface UserService {
     public User updatePassword(User user,
                                String newPassword);
 
-
 }

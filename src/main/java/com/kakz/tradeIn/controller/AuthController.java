@@ -8,6 +8,7 @@ import com.kakz.tradeIn.response.AuthResponse;
 import com.kakz.tradeIn.service.CustomUserDetailsService;
 import com.kakz.tradeIn.service.EmailService;
 import com.kakz.tradeIn.service.TwoFactorOtpService;
+import com.kakz.tradeIn.service.WatchlistService;
 import com.kakz.tradeIn.utils.OtpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,6 +37,9 @@ public class AuthController {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private WatchlistService watchlistService;
+
     @PostMapping("/signup")
     public ResponseEntity<AuthResponse> register(@RequestBody User user) throws Exception {
 
@@ -50,6 +54,8 @@ public class AuthController {
         newUser.setFullName(user.getFullName());
 
         userRepository.save(newUser);
+
+        watchlistService.createWatchList(newUser);
 
         Authentication authentication=new UsernamePasswordAuthenticationToken(
                 user.getEmail(),

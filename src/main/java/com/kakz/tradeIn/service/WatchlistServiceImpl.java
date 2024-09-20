@@ -17,6 +17,7 @@ public class WatchlistServiceImpl implements WatchlistService {
         Watchlist watchlist = watchlistRepository.findByUserId(userId);
         if(watchlist==null){
             throw new Exception("watchlist is not found");
+//            return createWatchList(user);
         }
         return watchlist;
     }

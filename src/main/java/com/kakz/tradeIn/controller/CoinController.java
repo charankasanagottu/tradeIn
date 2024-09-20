@@ -21,8 +21,8 @@ public class CoinController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @GetMapping("/getCoinList?page={page}")
-    public ResponseEntity<List<Coin>> getCoinList(@RequestParam("page") int page) throws Exception {
+    @GetMapping
+    public ResponseEntity<List<Coin>> getCoinList(@RequestParam(required = false, value = "page") int page) throws Exception {
         List<Coin> coins= coinService.getCoinList(page);
         return new ResponseEntity<>(coins, HttpStatus.ACCEPTED);
     }
