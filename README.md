@@ -24,8 +24,11 @@ Step 1 : Clone This Repo
 Step 2: Change the Properties in Application.properties in the project 
 
 -> Database Connection Details of the database
+
 -> Change the API Key of the razorpay 
+
 -> Change Details WRT Stripe Payment 
+
 -> Also, SMTP Servers Details of the email. 
 
 Step 3: Import the Postman Collection in the Repo to Postman 
