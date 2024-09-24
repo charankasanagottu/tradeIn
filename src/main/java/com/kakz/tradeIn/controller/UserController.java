@@ -14,6 +14,8 @@ import com.kakz.tradeIn.service.ForgotPasswordService;
 import com.kakz.tradeIn.service.UserService;
 import com.kakz.tradeIn.service.VerificationCodeService;
 import com.kakz.tradeIn.utils.OtpUtils;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,7 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping("")
+@Tag(name = "User API")
 public class UserController {
 
     @Autowired
@@ -49,6 +52,7 @@ public class UserController {
      * @throws Exception If an error occurs during the retrieval of the user profile.
      */
     @GetMapping("/api/users/profile")
+    @Operation(summary = "User Profile", description = "Retrieves the user profile based on the provided JWT token.")
     public ResponseEntity<User> getUserProfile(@RequestHeader("Authorization") String jwt) throws Exception {
         User user =  userService.findUserProfileByJwt(jwt);
         return new ResponseEntity<>(user, HttpStatus.OK);
