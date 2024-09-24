@@ -6,6 +6,8 @@ import com.kakz.tradeIn.service.OrderService;
 import com.kakz.tradeIn.service.PaymentService;
 import com.kakz.tradeIn.service.UserService;
 import com.kakz.tradeIn.service.WalletService;
+import io.swagger.v3.oas.annotations.Operation;
+import org.springdoc.core.annotations.RouterOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +41,7 @@ public class WalletController {
      * @throws Exception if there is an issue with finding the user profile by JWT or fetching the wallet.
      */
     @GetMapping("/api/wallet")
+    @Operation(summary = "Retrieves the user's wallet information based on the provided JWT authorization'")
     public ResponseEntity<Wallet> getuserWallet(
             @RequestHeader("Authorization") String authorization) throws Exception {
         User user  = userService.findUserProfileByJwt(authorization);
@@ -57,6 +60,7 @@ public class WalletController {
      *                   wallet not found, insufficient balance, or any issues in the transfer process.
      */
     @PutMapping("api/wallet/{receiverWalletId}/transfer")
+    @Operation(summary = "Transfers a specified amount from the sender's wallet to the receiver's wallet.")
     public ResponseEntity<Wallet> walletToWalletTransfer(
             @RequestHeader("Authorization") String authorization,
             @PathVariable Long receiverWalletId,
@@ -81,6 +85,7 @@ public class WalletController {
      *                   or processing the payment.
      */
     @PutMapping("api/wallet/order/{orderId}/pay")
+    @Operation(summary = "Processes the payment for an order using the sender's wallet'")
     public ResponseEntity<Wallet> payOrderPayment(
             @RequestHeader("Authorization") String authorization,
             @PathVariable Long orderId
@@ -103,6 +108,7 @@ public class WalletController {
      * @throws Exception if there is an issue with user authentication, fetching the payment order, or processing the payment.
      */
     @PutMapping("/api/wallet/deposit")
+   @Operation(summary = "Adds money to the user's wallet based on the provided payment details'")
     public ResponseEntity<Wallet> addMoneyToWallet(
             @RequestHeader("Authorization")String jwt,
             @RequestParam(name="order_id") Long orderId,

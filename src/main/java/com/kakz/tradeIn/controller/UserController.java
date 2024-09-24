@@ -29,7 +29,6 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping("")
-@Tag(name = "User API")
 public class UserController {
 
     @Autowired
@@ -67,6 +66,7 @@ public class UserController {
      * @throws Exception if any error occurs during the process
      */
     @PostMapping("/api/users/verification/{verificationType}/send-otp")
+    @Operation(description= "Sends a verification OTP to the user based on the specified verification type" )
     public ResponseEntity<String> sendVerificationOtp(@RequestHeader("Authorization") String jwt,
                                                       @PathVariable("verificationType") VerificationType verificationType) throws Exception {
         User user =  userService.findUserProfileByJwt(jwt);
@@ -91,6 +91,7 @@ public class UserController {
      * @throws Exception If an error occurs during the verification of the OTP or enabling two-factor authentication.
      */
     @PatchMapping("/api/users/enable-two-factor/verify-otp/{otp}")
+    @Operation(summary = "Enable two-factor authentication")
     public ResponseEntity<User> enableTwoFactorAuthentication(@RequestHeader("Authorization") String jwt,
                                                               @PathVariable("otp") String otp) throws Exception {
         User user =  userService.findUserProfileByJwt(jwt);
@@ -119,6 +120,7 @@ public class UserController {
      * @return a ResponseEntity containing an AuthResponse with session information and a success message
      * @throws Exception if any error occurs during the process
      */
+    @Operation(summary = "Send forgot password OTP to the user's email for password reset'")
     @PostMapping("/auth/users/reset-password/send-otp")
     public ResponseEntity<AuthResponse> sendForgotPasswordOtp(
             @RequestBody ForgotPasswordTokenRequest request)
@@ -157,6 +159,7 @@ public class UserController {
      * @return A ResponseEntity containing an ApiResponse message and an HTTP status code.
      * @throws Exception If the OTP is incorrect or any other error occurs during the password reset process.
      */
+    @Operation(summary = "Resets the user's password'")
     @PatchMapping("/auth/users/reset-password/verify-otp")
     public ResponseEntity<ApiResponse> resetPassword(@RequestHeader("Authorization") String jwt,
                                              @RequestBody ResetPasswordRequest req,

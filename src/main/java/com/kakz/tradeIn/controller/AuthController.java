@@ -10,6 +10,7 @@ import com.kakz.tradeIn.service.EmailService;
 import com.kakz.tradeIn.service.TwoFactorOtpService;
 import com.kakz.tradeIn.service.WatchlistService;
 import com.kakz.tradeIn.utils.OtpUtils;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,6 +53,7 @@ public class AuthController {
      * @throws Exception if the email is already registered with another account
      */
     @PostMapping("/signup")
+    @Operation(summary = "Registers a new user with the provided details")
     public ResponseEntity<AuthResponse> register(@RequestBody User user) throws Exception {
 
         User isEmailExists = userRepository.findByEmail(user.getEmail());
@@ -92,6 +94,7 @@ public class AuthController {
      * @throws Exception if an error occurs during authentication
      */
     @PostMapping("/signin")
+    @Operation(summary = "Authenticates a user using their email and password, and handles Two Factor Authentication if enabled.")
     public ResponseEntity<AuthResponse> login(@RequestBody User user) throws Exception {
 
         String email = user.getEmail();
@@ -169,6 +172,7 @@ public class AuthController {
      * @throws Exception if the OTP is invalid or any error occurs during the process.
      */
     @PostMapping("/two-factor/otp/{otp}")
+    @Operation(summary = "Verifies the provided OTP (One-Time Password) for two-factor authentication during sign-in.")
     public ResponseEntity<AuthResponse> verifySignInOtp(
             @PathVariable String otp,
             @RequestParam String id) throws Exception {

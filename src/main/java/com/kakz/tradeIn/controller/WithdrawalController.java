@@ -9,6 +9,7 @@ import com.kakz.tradeIn.service.UserService;
 import com.kakz.tradeIn.service.WalletService;
 import com.kakz.tradeIn.service.WalletTransactionService;
 import com.kakz.tradeIn.service.WithdrawalService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,7 @@ public class WithdrawalController {
      * @throws Exception if an error occurs during the withdrawal process
      */
     @PostMapping("/api/withdrawal/{amount}")
+    @Operation(summary = "Processes a withdraw request by debiting the specified amount from the user's wallet'")
     public ResponseEntity<?> withdrawalRequest(
             @PathVariable Long amount,
             @RequestHeader("Authorization")String jwt) throws Exception {
@@ -70,6 +72,7 @@ public class WithdrawalController {
      * @throws Exception if an error occurs during the withdrawal processing
      */
     @PatchMapping("/api/admin/withdrawal/{id}/proceed/{accept}")
+    @Operation(summary = "Processes a withdraw request ")
     public ResponseEntity<?> proceedWithdrawal(
             @PathVariable Long id,
             @PathVariable boolean accept,
@@ -94,6 +97,7 @@ public class WithdrawalController {
      * @throws Exception if an error occurs during the retrieval process
      */
     @GetMapping("/api/withdrawal")
+    @Operation(summary = "Retrieves the withdraw history for the authenticated user")
     public ResponseEntity<List<Withdrawal>> getWithdrawalHistory(
 
             @RequestHeader("Authorization")String jwt) throws Exception {
@@ -112,6 +116,7 @@ public class WithdrawalController {
      * @throws Exception if an error occurs during the retrieval process
      */
     @GetMapping("/api/admin/withdrawal")
+    @Operation(summary = "Retrieves all withdrawal requests from the system")
     public ResponseEntity<List<Withdrawal>> getAllWithdrawalRequest(
 
             @RequestHeader("Authorization")String jwt) throws Exception {

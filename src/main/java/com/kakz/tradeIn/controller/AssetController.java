@@ -4,7 +4,7 @@ import com.kakz.tradeIn.model.Asset;
 import com.kakz.tradeIn.model.User;
 import com.kakz.tradeIn.service.AssetService;
 import com.kakz.tradeIn.service.UserService;
-import jdk.jshell.spi.ExecutionControl;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,24 +21,19 @@ import java.util.List;
 public class AssetController {
     /**
      * Service for performing operations on assets.
-     * Provides methods to create, retrieve, update, and delete assets,
-     * as well as to find assets based on user and coin identifiers.
-     */
+     * Provides methods*/
     private final AssetService assetService;
     /**
      * Service for managing user-related operations.
      *
-     * This service provides methods to handle user profile retrieval, user authentication,
-     * password updates, and enabling two-factor authentication.
-     */
+     * This service provides*/
     @Autowired
     private UserService userService;
 
     /**
      * Constructs an AssetController with the provided AssetService.
      *
-     * @param assetService the asset service to be used by the controller
-     */
+     * @param assetService the asset service to*/
     @Autowired
     public AssetController(AssetService assetService) {
         this.assetService = assetService;
@@ -47,25 +42,24 @@ public class AssetController {
     /**
      * Retrieves an asset by its ID.
      *
-     * @param assetId the ID of the asset to retrieve
-     * @return a ResponseEntity containing the requested asset
-     * @throws Exception if an error occurs during the retrieval process
-     */
+     * @param assetId the ID of the asset to*/
     @GetMapping("/{assetId}")
+    @Operation(summary = "Retrieves an asset by its ID")
     public ResponseEntity<Asset> getAssetById(@PathVariable Long assetId) throws Exception {
         Asset asset = assetService.getAssetById(assetId);
         return ResponseEntity.ok().body(asset);
     }
 
     /**
-     * Retrieves an asset associated with a specified user and coin.
-     *
-     * @param coinId the ID of the coin to retrieve the asset for, from path variable.
-     * @param jwt the JSON Web Token used to authenticate the user, from the request header.
-     * @return the ResponseEntity containing the asset corresponding to the given user and coin IDs.
-     * @throws Exception if an error occurs while retrieving the asset or user profile.
-     */
+ * Retrieves an asset by user ID and coin ID.
+ *
+ * @param coinId The ID of the coin to retrieve the asset for.
+ * @param jwt The JSON Web Token (JWT) used for authenticating the user.
+ * @return A ResponseEntity containing the asset owned by the authenticated user for the specified coin.
+ * @throws Exception If an error occurs while retrieving user profile or asset information.
+ */
     @GetMapping("/coin/{coinId}/user")
+    @Operation(summary = "Retrieves an asset by user ID and coin ID")
     public ResponseEntity<Asset> getAssetByUserIdAndCoinId(
             @PathVariable String coinId,
             @RequestHeader("Authorization") String jwt
@@ -77,13 +71,14 @@ public class AssetController {
     }
 
     /**
-     * Retrieves the list of assets for an authenticated user.
+     * Retrieves the list of assets for a given user based on their JWT token.
      *
-     * @param jwt the JSON Web Token used for authenticating the user
-     * @return a ResponseEntity containing a list of Assets associated with the user
-     * @throws Exception if an error occurs while processing the request
+     * @param jwt The JSON Web Token (JWT) used for authenticating the user.
+     * @return A ResponseEntity containing the list of assets owned by the authenticated user.
+     * @throws Exception If an error occurs while retrieving user profile or assets.
      */
     @GetMapping()
+    @Operation(summary = " Retrieves the list of assets for a given user based on their JWT token.")
     public ResponseEntity<List<Asset>> getAssetsForUser(
             @RequestHeader("Authorization") String jwt
     ) throws Exception {

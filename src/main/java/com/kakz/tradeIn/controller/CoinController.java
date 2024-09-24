@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kakz.tradeIn.model.Coin;
 import com.kakz.tradeIn.service.CoinService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,7 @@ public class CoinController {
      * @throws Exception if an error occurs while fetching the coin list
      */
     @GetMapping
+    @Operation(summary = "Retrieves a list of coins, optionally paginated by the provided page number")
     public ResponseEntity<List<Coin>> getCoinList(@RequestParam(required = false, value = "page") int page) throws Exception {
         List<Coin> coins= coinService.getCoinList(page);
         return new ResponseEntity<>(coins, HttpStatus.ACCEPTED);
@@ -43,6 +45,7 @@ public class CoinController {
      * @throws Exception if an error occurs while fetching the market chart data
      */
     @GetMapping("/{coinId}/chart")
+    @Operation(summary = "Retrieves the market chart data for a specific coin over a specified number")
     ResponseEntity<JsonNode> getMarketChart(
             @PathVariable String coinId,
             @RequestParam("days") int days
@@ -60,6 +63,7 @@ public class CoinController {
      * @throws JsonProcessingException if an error occurs while processing the JSON response
      */
     @GetMapping("/search")
+    @Operation(summary = "Searches for coins matching the specified keyword")
     ResponseEntity<JsonNode> searchCoin(@RequestParam("q") String keyword) throws JsonProcessingException {
         String coin=coinService.searchCoin(keyword);
         JsonNode jsonNode = objectMapper.readTree(coin);
@@ -74,6 +78,7 @@ public class CoinController {
      * @throws Exception if an error occurs while fetching the coins data
      */
     @GetMapping("/top50")
+    @Operation(summary = " Retrieves the top 50 coins by market capitalization rank.")
     ResponseEntity<JsonNode> getTop50CoinByMarketCapRank() throws Exception {
         String coin=coinService.getTop50CoinByMarketCap();
         JsonNode jsonNode = objectMapper.readTree(coin);
@@ -89,6 +94,7 @@ public class CoinController {
      * @throws Exception if an error occurs while fetching the trending coins data
      */
     @GetMapping("/trading")
+    @Operation(summary = "Retrieves the list of currently trending coins.")
     ResponseEntity<JsonNode> getTreadingCoin() throws Exception {
         String coin=coinService.getTradingCoins();
         JsonNode jsonNode = objectMapper.readTree(coin);
@@ -104,6 +110,7 @@ public class CoinController {
      * @throws Exception if an error occurs while fetching the coin details
      */
     @GetMapping("/details/{coinId}")
+    @Operation(summary = "Retrieves details for a specific coin by its ID.")
     ResponseEntity<JsonNode> getCoinDetails(@PathVariable String coinId) throws Exception {
         String coin=coinService.getCoinDetails(coinId);
         JsonNode jsonNode = objectMapper.readTree(coin);

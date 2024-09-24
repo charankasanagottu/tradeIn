@@ -7,6 +7,8 @@ import com.kakz.tradeIn.response.PaymentResponse;
 import com.kakz.tradeIn.service.PaymentService;
 import com.kakz.tradeIn.service.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import org.springdoc.core.annotations.RouterOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +37,7 @@ public class PaymentController {
      * @throws Exception if an error occurs while processing the payment or retrieving user information
      */
     @PostMapping("/api/payment/{paymentMethod}/amount/{amount}")
+    @Operation(summary = "Create a payment order and generate a payment link for the specified payment method")
     public ResponseEntity<PaymentResponse> paymentHandler(
             @PathVariable PaymentMethod paymentMethod,
             @PathVariable Long amount,

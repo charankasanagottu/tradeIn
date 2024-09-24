@@ -5,6 +5,8 @@ import com.kakz.tradeIn.model.User;
 import com.kakz.tradeIn.service.PaymentDetailsService;
 import com.kakz.tradeIn.service.PaymentDetailsServiceImpl;
 import com.kakz.tradeIn.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import org.springdoc.core.annotations.RouterOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +35,7 @@ public class PaymentDetailsController {
      * @throws Exception if there is an error during the process
      */
     @PostMapping("/payment-details")
+    @Operation(summary = "Adds payment details for the authenticated user")
     public ResponseEntity<PaymentDetails> addPaymentDetails(
             @RequestHeader("Authorization") String jwt,
             @RequestBody PaymentDetails paymentDetailsReq
@@ -56,6 +59,7 @@ public class PaymentDetailsController {
      * @throws Exception if there is an error during the process
      */
     @GetMapping("/payment-details")
+    @Operation(summary = "Retrieves the payment details of the authenticated user")
     public ResponseEntity<PaymentDetails> getUsersPaymentDetails(
             @RequestHeader("Authorization") String jwt
     ) throws Exception {

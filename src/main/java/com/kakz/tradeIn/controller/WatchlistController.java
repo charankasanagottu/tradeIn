@@ -6,6 +6,8 @@ import com.kakz.tradeIn.model.Watchlist;
 import com.kakz.tradeIn.service.CoinService;
 import com.kakz.tradeIn.service.UserService;
 import com.kakz.tradeIn.service.WatchlistService;
+import io.swagger.v3.oas.annotations.Operation;
+import org.springdoc.core.annotations.RouterOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +29,15 @@ public class WatchlistController {
         this.userService=userService;
     }
 
+    /**
+     * Retrieves the user's watchlist based on the provided JWT token.
+     *
+     * @param jwt the JSON Web Token used to authenticate and identify the user.
+     * @return ResponseEntity containing the user's watchlist.
+     * @throws Exception if there is any issue in fetching the user's profile or watchlist.
+     */
     @GetMapping("/user")
+    @Operation(summary = "Retrieves the user's watchlist based on the provided JWT token'")
     public ResponseEntity<Watchlist> getUserWatchlist(
             @RequestHeader("Authorization") String jwt) throws Exception {
 
@@ -45,7 +55,15 @@ public class WatchlistController {
 //        return ResponseEntity.status(HttpStatus.CREATED).body(createdWatchlist);
 //    }
 
+    /**
+     * Retrieves a watchlist by its identifier.
+     *
+     * @param watchlistId the identifier of the watchlist to retrieve.
+     * @return ResponseEntity containing the watchlist.
+     * @throws Exception if the watchlist cannot be found or any other issue occurs.
+     */
     @GetMapping("/{watchlistId}")
+    @Operation(summary = "Retrieves a watchlist by its identifier")
     public ResponseEntity<Watchlist> getWatchlistById(
             @PathVariable Long watchlistId) throws Exception {
 
@@ -54,7 +72,16 @@ public class WatchlistController {
 
     }
 
+    /**
+     * Adds a cryptocurrency coin to the authenticated user's watchlist.
+     *
+     * @param jwt the JSON Web Token used to authenticate and identify the user.
+     * @param coinId the identifier of the coin to add to the watchlist.
+     * @return ResponseEntity containing the added Coin.
+     * @throws Exception if there is any issue in retrieving the user profile, finding the coin, or adding the coin to the watchlist.
+     */
     @PatchMapping("/add/coin/{coinId}")
+    @Operation(summary = "Adds  coin to the authenticated user's watchlist'")
     public ResponseEntity<Coin> addItemToWatchlist(
             @RequestHeader("Authorization") String jwt,
             @PathVariable String coinId) throws Exception {

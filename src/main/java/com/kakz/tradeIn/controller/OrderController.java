@@ -9,6 +9,7 @@ import com.kakz.tradeIn.service.CoinService;
 import com.kakz.tradeIn.service.OrderService;
 import com.kakz.tradeIn.service.UserService;
 import com.kakz.tradeIn.service.WalletTransactionService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,6 +53,7 @@ public class OrderController {
      * @throws Exception if an error occurs during the processing of the order
      */
     @PostMapping("/pay")
+    @Operation(summary = "Processes a payment for an order using the provided JWT for user authentication")
     public ResponseEntity<Order> payOrderPayment(
             @RequestHeader("Authorization") String jwt,
             @RequestBody CreateOrderRequest req
@@ -78,6 +80,7 @@ public class OrderController {
      * @throws Exception if the JWT token is missing or there is an error during user or order retrieval
      */
     @GetMapping("/{orderId}")
+    @Operation(summary = "Retrieves an order by its ID after verifying the user's'")
     public ResponseEntity<Order> getOrderById(
             @RequestHeader("Authorization") String jwtToken,
             @PathVariable Long orderId
@@ -107,6 +110,7 @@ public class OrderController {
      * @throws Exception if the JWT token is missing or if an error occurs during the retrieval process
      */
     @GetMapping()
+    @Operation(summary = "Retrieves all orders for a user based on the provided JWT token")
     public ResponseEntity<List<Order>> getAllOrdersForUser(
             @RequestHeader("Authorization") String jwtToken,
             @RequestParam(required = false) OrderType order_type,
