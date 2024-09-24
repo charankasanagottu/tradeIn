@@ -5,6 +5,18 @@ import com.kakz.tradeIn.domain.USER_ROLE;
 import jakarta.persistence.*;
 import lombok.Data;
 
+/**
+ * Represents a user in the system.
+ * This entity is mapped to a database table where user details are stored.
+ *
+ * The user has the following attributes:
+ * - id: the unique identifier for the user.
+ * - fullName: the full name of the user.
+ * - email: the email address of the user.
+ * - password: the user's password, not visible when fetching user information (write-only).
+ * - twoFactorAuth: an embedded object for two-factor authentication details.
+ * - role: the role of the user, defaulting to ROLE_CUSTOMER.
+ */
 @Entity
 @Data
 public class User {

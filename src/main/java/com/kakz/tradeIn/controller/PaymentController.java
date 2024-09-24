@@ -6,14 +6,16 @@ import com.kakz.tradeIn.model.User;
 import com.kakz.tradeIn.response.PaymentResponse;
 import com.kakz.tradeIn.service.PaymentService;
 import com.kakz.tradeIn.service.UserService;
-import com.razorpay.RazorpayException;
-import com.stripe.exception.StripeException;
-import jdk.jshell.spi.ExecutionControl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * The PaymentController class is responsible for handling payment-related operations and endpoints.
+ * It processes payment requests using different payment methods, such as RAZORPAY and STRIPE.
+ */
 @RestController
 public class PaymentController {
 
@@ -23,6 +25,15 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
 
+    /**
+     * Handles payment requests by creating a payment order and generating a payment link for the specified payment method.
+     *
+     * @param paymentMethod the payment method to be used (e.g., RAZORPAY or STRIPE)
+     * @param amount the amount to be paid
+     * @param jwt the authorization token extracted from the request header
+     * @return a ResponseEntity containing the PaymentResponse and HTTP status code
+     * @throws Exception if an error occurs while processing the payment or retrieving user information
+     */
     @PostMapping("/api/payment/{paymentMethod}/amount/{amount}")
     public ResponseEntity<PaymentResponse> paymentHandler(
             @PathVariable PaymentMethod paymentMethod,

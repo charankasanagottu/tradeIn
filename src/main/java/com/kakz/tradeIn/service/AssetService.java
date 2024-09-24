@@ -6,6 +6,9 @@ import com.kakz.tradeIn.model.User;
 
 import java.util.List;
 
+/**
+ * AssetService is an interface that provides methods for managing user assets.
+ */
 public interface AssetService {
     Asset createAsset(User user, Coin coin, double quantity);
 

@@ -31,6 +31,14 @@ public class WithdrawalController {
     @Autowired
     private WalletTransactionService walletTransactionService;
 
+    /**
+     * Processes a withdrawal request by debiting the specified amount from the user's wallet.
+     *
+     * @param amount the amount of money to withdraw
+     * @param jwt the JWT token used to authenticate the user
+     * @return a ResponseEntity containing the details of the withdrawal and the HTTP status
+     * @throws Exception if an error occurs during the withdrawal process
+     */
     @PostMapping("/api/withdrawal/{amount}")
     public ResponseEntity<?> withdrawalRequest(
             @PathVariable Long amount,
@@ -51,6 +59,16 @@ public class WithdrawalController {
         return new ResponseEntity<>(withdrawal, HttpStatus.OK);
     }
 
+    /**
+     * Proceed with the withdrawal request identified by the given ID and update its status based on the 'accept' flag.
+     * If the withdrawal is declined, the amount is added back to the user's wallet balance.
+     *
+     * @param id the ID of the withdrawal request to be processed
+     * @param accept a boolean indicating whether the request is accepted (true) or declined (false)
+     * @param jwt the JSON Web Token for user authentication
+     * @return a ResponseEntity containing the processed Withdrawal object and HTTP status code
+     * @throws Exception if an error occurs during the withdrawal processing
+     */
     @PatchMapping("/api/admin/withdrawal/{id}/proceed/{accept}")
     public ResponseEntity<?> proceedWithdrawal(
             @PathVariable Long id,
@@ -68,6 +86,13 @@ public class WithdrawalController {
         return new ResponseEntity<>(withdrawal, HttpStatus.OK);
     }
 
+    /**
+     * Retrieves the withdrawal history for the authenticated user based on the provided JWT token.
+     *
+     * @param jwt the JSON Web Token used to authenticate the user
+     * @return a ResponseEntity containing a list of Withdrawal objects and the HTTP status code
+     * @throws Exception if an error occurs during the retrieval process
+     */
     @GetMapping("/api/withdrawal")
     public ResponseEntity<List<Withdrawal>> getWithdrawalHistory(
 
@@ -79,6 +104,13 @@ public class WithdrawalController {
         return new ResponseEntity<>(withdrawal, HttpStatus.OK);
     }
 
+    /**
+     * Retrieves all withdrawal requests from the system.
+     *
+     * @param jwt the JSON Web Token used to authenticate the user making the request
+     * @return a ResponseEntity containing a list of all withdrawal requests and the HTTP status
+     * @throws Exception if an error occurs during the retrieval process
+     */
     @GetMapping("/api/admin/withdrawal")
     public ResponseEntity<List<Withdrawal>> getAllWithdrawalRequest(
 

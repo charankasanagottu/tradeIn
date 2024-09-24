@@ -42,6 +42,15 @@ public class OrderController {
 //
 //    }
 
+    /**
+     * Processes a payment for an order using the provided JWT for user authentication
+     * and order details from the request.
+     *
+     * @param jwt  the JWT token for user authentication
+     * @param req  the request object containing order details such as coin ID, quantity, and order type
+     * @return a ResponseEntity containing the processed order
+     * @throws Exception if an error occurs during the processing of the order
+     */
     @PostMapping("/pay")
     public ResponseEntity<Order> payOrderPayment(
             @RequestHeader("Authorization") String jwt,
@@ -57,6 +66,17 @@ public class OrderController {
 
     }
 
+    /**
+     * Retrieves an order by its ID after verifying the user's authentication
+     * via the provided JWT token. The retrieved order is only returned
+     * if it belongs to the authenticated user.
+     *
+     * @param jwtToken the JSON Web Token used for user authentication
+     * @param orderId the ID of the order to be retrieved
+     * @return a ResponseEntity containing the order if the user is authorized or
+     *         a ResponseEntity with HTTP status FORBIDDEN if the user is not authorized
+     * @throws Exception if the JWT token is missing or there is an error during user or order retrieval
+     */
     @GetMapping("/{orderId}")
     public ResponseEntity<Order> getOrderById(
             @RequestHeader("Authorization") String jwtToken,
@@ -76,6 +96,16 @@ public class OrderController {
         }
     }
 
+    /**
+     * Retrieves all orders for a user based on the provided JWT token. Optional filters for order type
+     * and asset symbol can be applied.
+     *
+     * @param jwtToken the JSON Web Token used for user authentication
+     * @param order_type the type of orders to filter by (optional)
+     * @param asset_symbol the asset symbol to filter orders by (optional)
+     * @return a ResponseEntity containing a list of orders for the authenticated user
+     * @throws Exception if the JWT token is missing or if an error occurs during the retrieval process
+     */
     @GetMapping()
     public ResponseEntity<List<Order>> getAllOrdersForUser(
             @RequestHeader("Authorization") String jwtToken,

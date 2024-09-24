@@ -9,6 +9,41 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+/**
+ * Represents a cryptocurrency coin.
+ *
+ * This entity is mapped to a database table named "coins" and is used to store various
+ * attributes about a cryptocurrency coin such as its current price, market capitalization,
+ * volume, and historical data.
+ *
+ * Attributes:
+ * - id: Unique identifier for the coin.
+ * - symbol: Symbol representing the coin (e.g., BTC for Bitcoin).
+ * - name: Full name of the coin.
+ * - image: URL to an image representing the coin.
+ * - currentPrice: Current trading price of the coin.
+ * - marketCap: Market capitalization of the coin.
+ * - marketCapRank: Ranking of the coin based on its market cap.
+ * - fullyDilutedValuation: Fully diluted valuation of the coin.
+ * - totalVolume: Total trading volume of the coin in the last 24 hours.
+ * - high24h: Highest price of the coin in the last 24 hours.
+ * - low24h: Lowest price of the coin in the last 24 hours.
+ * - priceChange24h: Price change of the coin in the last 24 hours.
+ * - priceChangePercentage24h: Percentage change in price over the last 24 hours.
+ * - marketCapChange24h: Market capitalization change in the last 24 hours.
+ * - marketCapChangePercentage24h: Percentage change in market capitalization over the last 24 hours.
+ * - circulatingSupply: Current circulating supply of the coin.
+ * - totalSupply: Total supply of the coin.
+ * - maxSupply: Maximum supply of the coin.
+ * - ath: All-time high price of the coin.
+ * - athChangePercentage: Percentage change from the all-time high price.
+ * - athDate: Date when the all-time high price was recorded.
+ * - atl: All-time low price of the coin.
+ * - atlChangePercentage: Percentage change from the all-time low price.
+ * - atlDate: Date when the all-time low price was recorded.
+ * - roi: Return on investment information for the coin (ignored in JSON serialization).
+ * - lastUpdated: Last updated timestamp for the coin's data.
+ */
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor

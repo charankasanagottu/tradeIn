@@ -21,6 +21,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 
+/**
+ * The AuthController class provides authentication-related endpoints for user
+ * registration, login, and two-factor authentication.
+ */
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -40,6 +44,13 @@ public class AuthController {
     @Autowired
     private WatchlistService watchlistService;
 
+    /**
+     * Registers a new user with the provided details.
+     *
+     * @param user the user object containing new user's details like email, password, and full name
+     * @return a ResponseEntity containing an AuthResponse object with JWT token and status message
+     * @throws Exception if the email is already registered with another account
+     */
     @PostMapping("/signup")
     public ResponseEntity<AuthResponse> register(@RequestBody User user) throws Exception {
 
@@ -73,6 +84,13 @@ public class AuthController {
         return new ResponseEntity<>(authResponse,HttpStatus.CREATED);
     }
 
+    /**
+     * Authenticates a user using their email and password, and handles Two Factor Authentication if enabled.
+     *
+     * @param user the user object containing login credentials
+     * @return a ResponseEntity containing an AuthResponse object
+     * @throws Exception if an error occurs during authentication
+     */
     @PostMapping("/signin")
     public ResponseEntity<AuthResponse> login(@RequestBody User user) throws Exception {
 
@@ -117,6 +135,14 @@ public class AuthController {
         return new ResponseEntity<>(authResponse,HttpStatus.CREATED);
     }
 
+    /**
+     * Authenticates a user based on the provided email and password.
+     *
+     * @param email the email of the user trying to authenticate
+     * @param password the password of the user trying to authenticate
+     * @return an Authentication object containing the authenticated user's details and authorities
+     * @throws BadCredentialsException if the email or password is incorrect
+     */
     private Authentication authenticate(String email, String password) {
         UserDetails userdetails = customUserDetailsService.loadUserByUsername(email);
         if (userdetails == null) {
@@ -134,6 +160,14 @@ public class AuthController {
         }
     }
 
+    /**
+     * Verifies the provided OTP (One-Time Password) for two-factor authentication during sign-in.
+     *
+     * @param otp the OTP that needs to be verified.
+     * @param id the identifier associated with the two-factor authentication OTP entry.
+     * @return a ResponseEntity containing an AuthResponse object if the OTP is successfully verified.
+     * @throws Exception if the OTP is invalid or any error occurs during the process.
+     */
     @PostMapping("/two-factor/otp/{otp}")
     public ResponseEntity<AuthResponse> verifySignInOtp(
             @PathVariable String otp,

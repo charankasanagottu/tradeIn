@@ -9,6 +9,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service for handling email-related operations.
+ */
 @Service
 public class EmailService {
 
@@ -16,6 +19,14 @@ public class EmailService {
     private JavaMailSender javaMailSender;
 
 
+    /**
+     * Sends a verification OTP email to the specified user email address.
+     *
+     * @param userEmail the email address of the user to send the OTP to
+     * @param otp the one-time password (OTP) to be sent for verification
+     * @throws MessagingException if a message parsing or address error occurs
+     * @throws MailSendException if the email fails to send
+     */
     public void sendVerificationOtpEmail(String userEmail, String otp) throws MessagingException, MailSendException {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");

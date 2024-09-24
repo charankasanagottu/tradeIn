@@ -10,6 +10,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * The PaymentDetailsController handles requests related to payment details
+ * for authenticated users. It provides endpoints to add payment details and
+ * retrieve payment details of the authenticated user.
+ */
 @RestController
 @RequestMapping("/api")
 public class PaymentDetailsController {
@@ -19,6 +24,14 @@ public class PaymentDetailsController {
     @Autowired
     private UserService userService;
 
+    /**
+     * Adds payment details for the authenticated user.
+     *
+     * @param jwt a JSON Web Token for authenticating the user
+     * @param paymentDetailsReq an object containing the payment details to be added
+     * @return a ResponseEntity containing the added PaymentDetails object and an HTTP status of CREATED
+     * @throws Exception if there is an error during the process
+     */
     @PostMapping("/payment-details")
     public ResponseEntity<PaymentDetails> addPaymentDetails(
             @RequestHeader("Authorization") String jwt,
@@ -35,6 +48,13 @@ public class PaymentDetailsController {
         return new ResponseEntity<>(paymentDetails, HttpStatus.CREATED);
     }
 
+    /**
+     * Retrieves the payment details of the authenticated user.
+     *
+     * @param jwt a JSON Web Token for authenticating the user
+     * @return a ResponseEntity containing the user's PaymentDetails and an HTTP status of OK
+     * @throws Exception if there is an error during the process
+     */
     @GetMapping("/payment-details")
     public ResponseEntity<PaymentDetails> getUsersPaymentDetails(
             @RequestHeader("Authorization") String jwt

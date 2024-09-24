@@ -8,6 +8,15 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+/**
+ * Represents an order in the system.
+ * This entity is mapped to the 'orders' table in the database.
+ *
+ * An order contains details such as the user who placed the order,
+ * the type and status of the order, the price at which the order
+ * was placed, and the timestamp when the order was created.
+ * Each order can be associated with one order item.
+ */
 @Entity
 @Data
 @Table(name = "orders")

@@ -21,22 +21,55 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * Implementation of the PaymentService interface. This class provides services for creating and managing
+ * payment orders, including integration with payment gateways like Razorpay and Stripe.
+ */
 @Service
 public class PaymentServiceImpl implements PaymentService{
 
+    /**
+     * Repository interface for performing CRUD operations on PaymentOrder entities.
+     * Extends JpaRepository to leverage Spring Data JPA functionalities.
+     */
     @Autowired
     private PaymentOrderRepository paymentOrderRepository;
 
+    /**
+     * The secret key used for authenticating with the Stripe API.
+     * This key is typically required for making authorized requests
+     * to Stripe's backend services.
+     *
+     * The value is injected from the application properties using
+     * the key "stripe.api.key".
+     */
     @Value("${stripe.api.key}")
     private String stripeSecretKey;
 
+    /**
+     * Represents the API key used to authenticate requests to the Razorpay service.
+     * The value is injected from the application's configuration properties.
+     */
     @Value("${razorpay.api.key}")
     private String razorApiKey;
 
+    /**
+     * Holds the secret API key for accessing the Razorpay service.
+     * This value is injected from the application's configuration properties.
+     */
     @Value("${razorpay.api.secret}")
     private String apiSecretKey;
 
 
+    /**
+     * Creates a new payment order with the given user, amount, and payment method.
+     * The newly created order will have its status set to PENDING.
+     *
+     * @param user the user placing the order
+     * @param amount the amount for the payment order
+     * @param paymentMethod the method of payment (e.g., RAZORPAY, STRIPE)
+     * @return the created PaymentOrder instance
+     */
     @Override
     public PaymentOrder createPaymentOrder(User user,
                                            Long amount,
@@ -50,6 +83,13 @@ public class PaymentServiceImpl implements PaymentService{
         return paymentOrderRepository.save(order);
     }
 
+    /**
+     * Retrieves a PaymentOrder by its unique identifier.
+     *
+     * @param paymentOrderId the unique identifier of the PaymentOrder to retrieve
+     * @return the PaymentOrder associated with the specified identifier
+     * @throws Exception if no PaymentOrder is found with the given identifier
+     */
     @Override
     public PaymentOrder getPaymentOrderById(Long paymentOrderId) throws Exception {
         Optional<PaymentOrder> paymentOrderOptional = paymentOrderRepository.findById(paymentOrderId);
@@ -59,6 +99,14 @@ public class PaymentServiceImpl implements PaymentService{
         return paymentOrderOptional.get();
     }
 
+    /**
+     * Processes the payment order by verifying the payment status with the payment provider.
+     *
+     * @param paymentOrder the payment order to be processed
+     * @param paymentId the payment identifier used to fetch payment details from the provider
+     * @return true if the payment order was successfully processed, false otherwise
+     * @throws RazorpayException if there is an error while interacting with the Razorpay API
+     */
     @Override
     public boolean proceedPaymentOrder(PaymentOrder paymentOrder,
                                        String paymentId) throws RazorpayException {
@@ -94,6 +142,15 @@ public class PaymentServiceImpl implements PaymentService{
         return false;
     }
 
+    /**
+     * Creates a Razorpay payment link for a given user and order.
+     *
+     * @param user The user for whom the payment link is being created.
+     * @param amount The amount for the payment (in smallest currency unit, e.g., paise for INR).
+     * @param orderId The ID of the order associated with the payment link.
+     * @return A PaymentResponse containing the payment URL.
+     * @throws RazorpayException If there is an error creating the payment link.
+     */
     @Override
     public PaymentResponse createRazorpayPaymentLink(User user, Long amount,
                                                      Long orderId) throws RazorpayException {
@@ -144,6 +201,15 @@ public class PaymentServiceImpl implements PaymentService{
         }
     }
 
+    /**
+     * Creates a Stripe payment link for a given user, amount, and order ID.
+     *
+     * @param user The user for whom the payment link is being created.
+     * @param amount The amount to be paid.
+     * @param orderId The ID of the order associated with the payment.
+     * @return PaymentResponse containing the URL for the payment.
+     * @throws StripeException if there is any error during the creation of the payment session.
+     */
     @Override
     public PaymentResponse createStripPaymentLink(User user,
                                                   Long amount,

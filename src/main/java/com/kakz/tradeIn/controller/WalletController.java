@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 
+/**
+ * WalletController is responsible for handling wallet-related operations such as retrieving wallet information,
+ * transferring funds between wallets, paying for orders, and depositing money into wallets.
+ */
 @RestController
 //@RequestMapping("")
 public class WalletController {
@@ -27,6 +31,13 @@ public class WalletController {
     @Autowired
     private OrderService orderService;
 
+    /**
+     * Retrieves the user's wallet information based on the provided JWT authorization token.
+     *
+     * @param authorization the JWT authorization token used to authenticate and identify the user.
+     * @return a ResponseEntity containing the user's Wallet object with a status of HttpStatus.ACCEPTED.
+     * @throws Exception if there is an issue with finding the user profile by JWT or fetching the wallet.
+     */
     @GetMapping("/api/wallet")
     public ResponseEntity<Wallet> getuserWallet(
             @RequestHeader("Authorization") String authorization) throws Exception {
@@ -35,6 +46,16 @@ public class WalletController {
         return new ResponseEntity<>(wallet,HttpStatus.ACCEPTED);
     }
 
+    /**
+     * Transfers a specified amount from the sender's wallet to the receiver's wallet.
+     *
+     * @param authorization the JWT authorization token of the sender used to authenticate and identify the user.
+     * @param receiverWalletId the ID of the receiver's wallet.
+     * @param walletTransaction the WalletTransaction object containing details of the transaction including the amount.
+     * @return a ResponseEntity containing the updated Wallet object of the sender with a status of HttpStatus.ACCEPTED.
+     * @throws Exception if any error occurs during the transaction process, such as user authentication failure,
+     *                   wallet not found, insufficient balance, or any issues in the transfer process.
+     */
     @PutMapping("api/wallet/{receiverWalletId}/transfer")
     public ResponseEntity<Wallet> walletToWalletTransfer(
             @RequestHeader("Authorization") String authorization,
@@ -50,6 +71,15 @@ public class WalletController {
         return new ResponseEntity<>(wallet,HttpStatus.ACCEPTED);
     }
 
+    /**
+     * Processes the payment for an order using the sender's wallet.
+     *
+     * @param authorization the JWT authorization token used to authenticate and identify the user.
+     * @param orderId the ID of the order to be paid.
+     * @return a ResponseEntity containing the updated Wallet object with a status of HttpStatus.ACCEPTED.
+     * @throws Exception if there is an issue with finding the user profile by JWT, fetching the order,
+     *                   or processing the payment.
+     */
     @PutMapping("api/wallet/order/{orderId}/pay")
     public ResponseEntity<Wallet> payOrderPayment(
             @RequestHeader("Authorization") String authorization,
@@ -63,7 +93,16 @@ public class WalletController {
         return new ResponseEntity<>(wallet,HttpStatus.ACCEPTED);
     }
 
-    @PutMapping("/api/wallet/deposit")  
+    /**
+     * Adds money to the user's wallet based on the provided payment details.
+     *
+     * @param jwt the JWT authorization token used to authenticate and identify the user.
+     * @param orderId the ID of the payment order.
+     * @param paymentId the ID of the payment transaction.
+     * @return ResponseEntity containing the updated Wallet object with a status of HttpStatus.OK.
+     * @throws Exception if there is an issue with user authentication, fetching the payment order, or processing the payment.
+     */
+    @PutMapping("/api/wallet/deposit")
     public ResponseEntity<Wallet> addMoneyToWallet(
             @RequestHeader("Authorization")String jwt,
             @RequestParam(name="order_id") Long orderId,
