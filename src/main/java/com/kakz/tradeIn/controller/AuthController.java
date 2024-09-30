@@ -60,7 +60,6 @@ public class AuthController {
         if(isEmailExists!=null){
             throw new Exception("Email Already Exists with another Account ");
         }
-
         User newUser = new User();
         newUser.setEmail(user.getEmail());
         newUser.setPassword(user.getPassword());
