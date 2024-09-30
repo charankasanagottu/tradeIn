@@ -105,7 +105,10 @@ portfolios.
 ### Front-End
 
 1.  Navigate to the `frontend` directory.
-2.  Install dependencies: \`\`\`bash npm install
+2.  Install dependencies: 
+    ``` bash 
+    npm install
+    ```
 
 ## Back-End
 
