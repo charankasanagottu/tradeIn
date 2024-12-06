@@ -1,6 +1,9 @@
 # TradeIn - Cryptocurrency Trading Application
 ## Application Demonstration URL 
--  https://drive.google.com/drive/folders/1xR5wChkPA-4GI5M8IzxbIwkkUZZM4FlE?usp=sharing
+- About How to Execute the file and using prominent features in Application :
+  [https://drive.google.com/drive/folders/1xR5wChkPA-4GI5M8IzxbIwkkUZZM4FlE?usp=sharing](https://drive.google.com/file/d/11SQ_2hv_7gdb-gB1rkFpJ0rrAj9Bh6o8/view?usp=sharing)
+- About Graphical Representation of Stock Data
+- https://drive.google.com/file/d/1PDOXQMba5qDepBUEzVzgaAnrtrGt6Zen/view?usp=sharing
 ## Overview
 
 **TradeIn** is a feature-rich cryptocurrency trading platform designed
