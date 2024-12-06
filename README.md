@@ -131,7 +131,8 @@ portfolios.
     ```
     
 -  **Swagger URL**: http://localhost:5454/swagger-ui/index.html
-   To get to know about api's and their required attributes
+   To get to know about api's and their required attributes.
+-  Note : This will only work when backend server is running.
 ------------------------------------------------------------------------
 
 Ensure that MySQL is running and properly configured for the backend
