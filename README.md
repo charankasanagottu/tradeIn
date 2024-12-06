@@ -18,8 +18,6 @@ portfolios.
     cryptocurrency prices and market trends.
 -   **Secure Transactions**: Utilized Razorpay and Stripe APIs for safe
     and secure payment processing.
--   **AI-Powered Chatbot**: Leveraged Gemini API for providing real-time
-    market analysis and user support.
 -   **Portfolio Management**: Comprehensive tools for buy/sell orders,
     asset tracking, and watchlist management.
 -   **Responsive Design**: Designed for mobile and web using React and
