@@ -110,7 +110,8 @@ portfolios.
     npm install
     ```
 3.  Run Website
-     ``` npm run dev
+     ```
+     npm run dev
      ```
 
 ## Back-End
