@@ -67,7 +67,6 @@ portfolios.
     process via **SMTP-based email notifications**.
 -   **Database Management**: Utilized **MySQL** for managing all user
     data, transactions, and orders securely and efficiently.
--   **Swagger URL**: http://localhost:5454/swagger-ui/index.html
 
 ------------------------------------------------------------------------
 
@@ -130,7 +129,9 @@ portfolios.
     ``` bash
     mvn spring-boot:run
     ```
-
+    
+-  **Swagger URL**: http://localhost:5454/swagger-ui/index.html
+   To get to know about api's and their required attributes
 ------------------------------------------------------------------------
 
 Ensure that MySQL is running and properly configured for the backend
