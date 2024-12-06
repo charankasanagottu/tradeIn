@@ -122,15 +122,14 @@ portfolios.
     Open the src/main/resources/application.properties file. Update the
     MySQL connection details with your device's configuration: properties
     Copy code
-spring.datasource.url=jdbc:mysql://localhost:3306/your_database_name
-spring.datasource.username=your_mysql_username
-spring.datasource.password=your_mysql_password
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver 3. Set up
-the database Create a MySQL database using the following command: sql
-Copy code CREATE DATABASE your_database_name; (Optional) Run any
-necessary SQL scripts to set up tables, if applicable.
-
-
+- spring.datasource.url=jdbc:mysql://localhost:port_number/your_database_name
+- spring.datasource.username=your_mysql_username
+- spring.datasource.password=your_mysql_password
+- spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+3. Set up the database Create a MySQL database using the following command:
+  ```
+  CREATE DATABASE your_database_name;
+  ```
 4.  Install dependencies and configure MySQL:
 
     ``` bash
