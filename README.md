@@ -109,6 +109,9 @@ portfolios.
     ``` bash 
     npm install
     ```
+3.  Run Website
+     ``` npm run dev
+     ```
 
 ## Back-End
 
