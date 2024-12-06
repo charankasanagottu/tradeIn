@@ -110,7 +110,7 @@ portfolios.
     npm install
     ```
 3.  Run Website
-     ```
+     ```bash
      npm run dev
      ```
 
@@ -127,9 +127,9 @@ portfolios.
 - spring.datasource.password=your_mysql_password
 - spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 3. Set up the database Create a MySQL database using the following command:
-  ```
-  CREATE DATABASE your_database_name;
-  ```
+     ```bash
+     CREATE DATABASE your_database_name;
+     ```
 4.  Install dependencies and configure MySQL:
 
     ``` bash
