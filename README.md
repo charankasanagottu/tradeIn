@@ -67,6 +67,7 @@ portfolios.
     process via **SMTP-based email notifications**.
 -   **Database Management**: Utilized **MySQL** for managing all user
     data, transactions, and orders securely and efficiently.
+-   **Swagger URL**: http://localhost:5454/swagger-ui/index.html
 
 ------------------------------------------------------------------------
 
