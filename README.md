@@ -109,23 +109,42 @@ portfolios.
     ``` bash 
     npm install
     ```
+3.  Run Website
+     ```bash
+     npm run dev
+     ```
 
 ## Back-End
 
 1.  Navigate to the `backend` directory.
-
-2.  Install dependencies and configure MySQL:
+2.  Configure the MySQL database Before running the application, make
+    sure your MySQL database is properly configured.
+    Open the src/main/resources/application.properties file. Update the
+    MySQL connection details with your device's configuration: properties
+    Copy code
+- spring.datasource.url=jdbc:mysql://localhost:port_number/your_database_name
+- spring.datasource.username=your_mysql_username
+- spring.datasource.password=your_mysql_password
+- spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+3. Set up the database Create a MySQL database using the following command:
+     ```bash
+     CREATE DATABASE your_database_name;
+     ```
+4.  Install dependencies and configure MySQL:
 
     ``` bash
     mvn clean install
     ```
 
-3.  Run the Spring Boot application:
+5.  Run the Spring Boot application:
 
     ``` bash
     mvn spring-boot:run
     ```
-
+    
+-  **Swagger URL**: http://localhost:5454/swagger-ui/index.html
+   To get to know about api's and their required attributes.
+-  Note : This will only work when backend server is running.
 ------------------------------------------------------------------------
 
 Ensure that MySQL is running and properly configured for the backend
