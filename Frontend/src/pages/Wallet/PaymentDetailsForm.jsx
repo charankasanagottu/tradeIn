@@ -53,7 +53,7 @@ const PaymentDetailsForm = () => {
     console.log("payment details form", data);
   };
   return (
-    <div className="px-10 py-2">
+    <div className="px-10 py-2 text-black">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FormField
@@ -154,7 +154,7 @@ const PaymentDetailsForm = () => {
           />
 
           {!auth.loading ? (
-            <Button type="submit" className="w-full  py-5">
+            <Button type="submit" className="w-full  py-5 hover:bg-[#38b6ff] hover:bg-opacity-50">
               SUBMIT
             </Button>
           ) : (

@@ -36,20 +36,20 @@ const TopupForm = () => {
           onChange={handleChange}
           value={amount}
           className="py-7 text-lg"
-          placeholder="$9999"
+          placeholder="₹99"
         />
       </div>
-
+    
       <div>
         <h1 className="pb-1">Select payment method</h1>
         <RadioGroup
           onValueChange={(value) => {
             setPaymentMethod(value);
           }}
-          className="flex"
+          className="flex "
           defaultValue="RAZORPAY"
         >
-          <div className="flex items-center space-x-2 border p-3 px-5 rounded-md">
+          <div className="flex hover:bg-[#3c61e6] hover:bg-opacity-60 hover:border-0 items-center space-x-2 border p-3 px-5 rounded-md">
             <RadioGroupItem
               icon={DotFilledIcon}
               iconClassName="h-8 w-8"
@@ -66,7 +66,7 @@ const TopupForm = () => {
               </div>
             </Label>
           </div>
-          <div className="flex items-center space-x-2 rounded-md border p-3 px-5">
+          <div className="flex hover:bg-[#3c61e6] hover:bg-opacity-60 hover:border-0 items-center space-x-2 rounded-md border p-3 px-5">
             <RadioGroupItem
               icon={DotFilledIcon}
               className="h-9 w-9"
@@ -92,7 +92,7 @@ const TopupForm = () => {
         <Button
           onClick={handleSubmit}
           variant=""
-          className="w-full py-7 text-xl"
+          className="w-full py-7 text-xl hover:bg-opacity-60 hover:bg-[#3c61e6]"
         >
           Submit
         </Button>

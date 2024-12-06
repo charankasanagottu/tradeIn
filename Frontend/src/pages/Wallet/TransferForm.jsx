@@ -35,7 +35,7 @@ const TransferForm = () => {
     console.log(formData);
   };
   return (
-    <div className="pt-10 space-y-5">
+    <div className="pt-10 space-y-5 text-black">
       <div>
         <h1 className="pb-1">Enter Amount</h1>
         <Input
@@ -43,7 +43,7 @@ const TransferForm = () => {
           onChange={handleChange}
           value={formData.amount}
           className="py-7"
-          placeholder="$9999"
+          placeholder="₹99"
         />
       </div>
       <div>
@@ -53,7 +53,7 @@ const TransferForm = () => {
           onChange={handleChange}
           value={formData.walletId}
           className="py-7"
-          placeholder="#ADFE34456"
+          placeholder="#Id"
         />
       </div>
 
@@ -72,7 +72,7 @@ const TransferForm = () => {
         <Button
           onClick={handleSubmit}
           variant=""
-          className="w-full p-7 text-xl"
+          className="w-full p-7 text-xl hover:bg-[#38b6ff] hover:bg-opacity-50"
         >
           Send
         </Button>

@@ -156,9 +156,9 @@ const Wallet = () => {
                     <span className="text mt-2">Add Money</span>
                   </div>
                 </DialogTrigger>
-                <DialogContent className="p-10 bg-[#ffffff] bg-opacity-50">
+                <DialogContent className="p-10 bg-[#ffffff]">
                   <DialogHeader>
-                    <DialogTitle className="text-center text-2xl">
+                    <DialogTitle className="text-center text-2xl text-black">
                       Top Up Your Wallet
                     </DialogTitle>
                     <TopupForm />
@@ -173,9 +173,9 @@ const Wallet = () => {
                     <span className="text mt-2">Withdraw</span>
                   </div>
                 </DialogTrigger>
-                <DialogContent className="p-10">
+                <DialogContent className="p-10 bg-[#ffffff]">
                   <DialogHeader>
-                    <DialogTitle className="text-center text-xl">
+                    <DialogTitle className="text-center text-xl text-black">
                       Request Withdrawal
                     </DialogTitle>
                     <WithdrawForm />
@@ -190,9 +190,9 @@ const Wallet = () => {
                     <span className="text mt-2">Transer</span>
                   </div>
                 </DialogTrigger>
-                <DialogContent className="p-10">
+                <DialogContent className="p-10 bg-[#ffffff]">
                   <DialogHeader>
-                    <DialogTitle className="text-center text-xl">
+                    <DialogTitle className="text-center text-xl text-black">
                       Transfer To Other Wallet
                     </DialogTitle>
                     <TransferForm />

@@ -9,6 +9,7 @@ import { withdrawalRequest } from "@/Redux/Withdrawal/Action";
 import { DialogClose } from "@/components/ui/dialog";
 import { maskAccountNumber } from "@/Util/maskAccountNumber";
 import { useNavigate } from "react-router-dom";
+import { IndianRupee } from "lucide-react";
 
 const WithdrawForm = () => {
   const dispatch = useDispatch();
@@ -42,24 +43,24 @@ const WithdrawForm = () => {
     <div className="pt-10 space-y-5">
       <div className="flex justify-between items-center rounded-md bg-slate-900 text- text-xl font-bold px-5 py-4">
         <p>Available balance</p>
-        <p>${wallet.userWallet?.balance}</p>
+        <p>₹ {wallet.userWallet?.balance}</p>
       </div>
       <div className="flex flex-col items-center">
-        <h1 className="">Enter withdrawal amount</h1>
+        <h1 className="text-black">Enter withdrawal amount</h1>
 
         <div className="flex items-center justify-center ">
           <Input
             onChange={handleChange}
             value={amount}
             className="withdrawInput py-7 border-none outline-none focus:outline-none px-0 text-2xl text-center "
-            placeholder="$9999"
+            placeholder="₹99"
             type="number"
           />
         </div>
       </div>
 
       <div>
-        <p className="pb-2">Transfer to</p>
+        <p className="pb-2 text-black">Transfer to</p>
         <div className="flex items-center gap-5 border px-5 py-2 rounded-md">
           <img
             className="h-8 w-8"
@@ -70,7 +71,7 @@ const WithdrawForm = () => {
             <p className="text-xl font-bold">
               {withdrawal.paymentDetails?.bankName}
             </p>
-            <p className="text-xs">
+            <p className="text-xs text-black">
               {maskAccountNumber(withdrawal.paymentDetails?.accountNumber)}
             </p>
           </div>
@@ -80,7 +81,7 @@ const WithdrawForm = () => {
         <Button
           onClick={handleSubmit}
           variant=""
-          className="w-full py-7 text-xl"
+          className="w-full py-7 text-xl hover:bg-[#38b6ff] hover:bg-opacity-50"
         >
           Withdraw {amount && <span className="ml-5">${amount}</span>}
         </Button>

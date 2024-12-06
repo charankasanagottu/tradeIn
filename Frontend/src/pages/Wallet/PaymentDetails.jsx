@@ -45,13 +45,13 @@ const PaymentDetails = () => {
           <CardContent>
             <div className="flex items-center">
               <p className="w-32">A/C Holder</p>
-              <p className="text-gray-400">
+              <p className="text-black">
                 : {withdrawal.paymentDetails?.accountHolderName}
               </p>
             </div>
             <div className="flex items-center">
               <p className="w-32">IFSC</p>
-              <p className="text-gray-400">
+              <p className="text-black">
                 : {withdrawal.paymentDetails.ifsc?.toUpperCase()}
               </p>
             </div>
@@ -60,7 +60,7 @@ const PaymentDetails = () => {
       ) : (
         <Dialog>
           <DialogTrigger>
-            <Button className="py-6">Add Payment Details</Button>
+            <Button className="py-6 text-black">Add Payment Details</Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader className="pb-5">
