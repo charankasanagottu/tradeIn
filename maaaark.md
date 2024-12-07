@@ -19,16 +19,15 @@ TrainLabel/
     TrainLabel2.txt
     TrainLabel3.txt
     TrainLabel4.txt
-    
     TrainLabel5.txt
-    │     ├── TrainLabel6.txt
-    ├── TestData/
-          ├── TestData1.txt
-          ├── TestData2.txt
-          ├── TestData3.txt
-          ├── TestData4.txt
-          ├── TestData5.txt
-          ├── TestData6.txt
+    TrainLabel6.txt
+TestData/
+    TestData1.txt
+    TestData2.txt
+    TestData3.txt
+    TestData4.txt
+    TestData5.txt
+    TestData6.txt
 
 
 
