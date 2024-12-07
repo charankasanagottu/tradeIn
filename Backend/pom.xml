@@ -99,6 +99,7 @@
 			<groupId>com.stripe</groupId>
 			<artifactId>stripe-java</artifactId>
 			<version>20.62.0</version>
+<!--			<systemPath>Program Files/Java/jdk-17/bin/server. </systemPath>-->
 		</dependency>
 		<dependency>
 				<groupId>com.jayway.jsonpath</groupId>
@@ -118,6 +119,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>application</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
