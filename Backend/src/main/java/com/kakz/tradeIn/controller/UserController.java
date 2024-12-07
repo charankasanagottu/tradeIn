@@ -79,7 +79,6 @@ public class UserController {
         if(verificationType.equals(VerificationType.EMAIL)){
             emailService.sendVerificationOtpEmail(user.getEmail(), verificationCode.getOtp());
         }
-
         return new ResponseEntity<>("Verification Otp Successfully Sent!", HttpStatus.OK);
     }
 
