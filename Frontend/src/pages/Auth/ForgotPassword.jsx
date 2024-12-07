@@ -56,7 +56,6 @@ const ForgotPasswordForm = () => {
                     placeholder="enter your email"
                   />
                 </FormControl>
-
                 <FormMessage />
               </FormItem>
             )}

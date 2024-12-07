@@ -61,13 +61,13 @@ const ResetPasswordForm = () => {
   return (
     <div className={`loginContainer h-screen flex justify-center items-center `}>
       <Card
-        className={`box flex flex-col items-center justify-center p-10 h-[35rem] w-[30rem] border `}
+        className={`box flex flex-col items-center justify-center p-10 h-[35rem] w-[30rem] border hover:border-0`}
       >
         <div className="space-y-5 w-full">
           <h1 className="text-center text-xl pb-5">Reset Your Password</h1>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              <h1 className="pb-2">Verify OTP</h1>
+              <h1 className="pb-2 ">Verify OTP</h1>
               <FormField
                 control={form.control}
                 name="otp"
@@ -93,7 +93,7 @@ const ResetPasswordForm = () => {
                   </FormItem>
                 )}
               />
-              <h1 className="pt-7 pb-2">Change Password</h1>
+              <h1 className="pt-7 pb-2 ">Change Password</h1>
               <FormField
                 control={form.control}
                 name="password"
@@ -130,7 +130,7 @@ const ResetPasswordForm = () => {
                 )}
               />
 
-              <Button type="submit" className="w-full py-5">
+              <Button type="submit" className="w-full py-5 hover:bg-[#5c61e6] hover:bg-opacity-80">
                 Change Password
               </Button>
             </form>

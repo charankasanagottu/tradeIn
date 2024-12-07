@@ -48,7 +48,7 @@ const WithdrawForm = () => {
       <div className="flex flex-col items-center">
         <h1 className="text-black">Enter withdrawal amount</h1>
 
-        <div className="flex items-center justify-center ">
+        <div className="flex items-center justify-center text-black">
           <Input
             onChange={handleChange}
             value={amount}
@@ -83,7 +83,7 @@ const WithdrawForm = () => {
           variant=""
           className="w-full py-7 text-xl hover:bg-[#38b6ff] hover:bg-opacity-50"
         >
-          Withdraw {amount && <span className="ml-5">${amount}</span>}
+          Withdraw {amount && <span className="ml-5">₹ {amount}</span>}
         </Button>
       </DialogClose>
     </div>

@@ -12,10 +12,21 @@ import { useDispatch, useSelector } from "react-redux";
 import AccountVarificationForm from "./AccountVarificationForm";
 import { VerifiedIcon } from "lucide-react";
 import { enableTwoStepAuthentication, verifyOtp } from "@/Redux/Auth/Action";
+import { useNavigate } from "react-router-dom";
+import { sendResetPassowrdOTP } from "@/Redux/Auth/Action";
+import { Form } from "@/components/ui/form"; 
+import { useState } from "react";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
+const formSchema = z.object({
+  email: z.string().email("Invalid email address"),
+});
 const Profile = () => {
   const { auth } = useSelector((store) => store);
   const dispatch = useDispatch();
+  const [verificationType, setVerificationType] = useState("EMAIL");
 
   const handleEnableTwoStepVerification =(otp)=>{
     console.log("EnableTwoStepVerification",otp)
@@ -26,9 +37,25 @@ const Profile = () => {
     console.log("otp  - ",otp)
     dispatch(verifyOtp({jwt:localStorage.getItem("jwt"),otp}))
   }
+  const navigate = useNavigate();
 
+  const onSubmit = (data) => {
+    data.navigate = navigate;
+    dispatch(
+      sendResetPassowrdOTP({ 
+        sendTo: auth.user?.email, navigate, verificationType })
+    );
+    console.log("login form", data);
+  };
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+    },
+  });
   
   return (
+    
     <div className="flex flex-col items-center mb-5">
       <div className="pt-10 w-full lg:w-[60%]">
         <Card>
@@ -127,7 +154,12 @@ const Profile = () => {
               </div> */}
               <div className="flex items-center">
                 <p className="w-[8rem]">Password :</p>
-                <Button className="hover:bg-[#38b6ff] hover:bg-opacity-60">Change Password</Button>
+                
+          
+
+          <Button type="submit" className="w-full bg-[#ffffff] hover:bg-[#5271ff] py-5">
+            Send OTP
+          </Button>
               </div>
             </CardContent>
           </Card>

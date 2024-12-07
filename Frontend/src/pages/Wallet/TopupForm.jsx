@@ -31,7 +31,7 @@ const TopupForm = () => {
   return (
     <div className="pt-10 space-y-5 ">
       <div>
-        <h1 className="pb-1">Enter Amount</h1>
+        <h1 className="pb-1 text-black">Enter Amount</h1>
         <Input
           onChange={handleChange}
           value={amount}
