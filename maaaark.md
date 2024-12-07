@@ -7,6 +7,7 @@ Each script is designed to be executed in \*\*Google Colab\*. \#
 -matplotlib
 
 /content/drive/MyDrive/Project/Classification/
+
 TrainData/
     TrainData1.txt
     TrainData2.txt
