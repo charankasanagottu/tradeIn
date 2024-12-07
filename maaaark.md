@@ -7,19 +7,20 @@ Each script is designed to be executed in \*\*Google Colab\*. \#
 -matplotlib
 
 /content/drive/MyDrive/Project/Classification/
-    ├── TrainData/
-    │     ├── TrainData1.txt
-    │     ├── TrainData2.txt
-    │     ├── TrainData3.txt
-    │     ├── TrainData4.txt
-    │     ├── TrainData5.txt
-    │     ├── TrainData6.txt
-    ├── TrainLabel/
-    │     ├── TrainLabel1.txt
-    │     ├── TrainLabel2.txt
-    │     ├── TrainLabel3.txt
-    │     ├── TrainLabel4.txt
-    │     ├── TrainLabel5.txt
+TrainData/
+    TrainData1.txt
+    TrainData2.txt
+    TrainData3.txt
+    TrainData4.txt
+    TrainData5.txt
+    TrainData6.txt
+TrainLabel/
+    TrainLabel1.txt
+    TrainLabel2.txt
+    TrainLabel3.txt
+    TrainLabel4.txt
+    
+    TrainLabel5.txt
     │     ├── TrainLabel6.txt
     ├── TestData/
           ├── TestData1.txt
